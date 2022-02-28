@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "io.github.vinccool96.logging"
-version = "1.1"
+version = "1.2"
 
 repositories {
     mavenCentral()
