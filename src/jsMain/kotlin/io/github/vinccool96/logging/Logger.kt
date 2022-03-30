@@ -2,7 +2,7 @@ package io.github.vinccool96.logging
 
 actual class Logger actual constructor(actual val name: String?) {
 
-    private val handlers: ArrayList<LogHandler> = arrayListOf(LogHandler { log: Log ->
+    private val baseHandler = LogHandler { log: Log ->
         val builder = StringBuilder()
         if (this.name != null) {
             builder.append("${this.name}: ")
@@ -16,7 +16,21 @@ actual class Logger actual constructor(actual val name: String?) {
             LogLevel.WARNING -> console.warn(builder.toString())
             LogLevel.ERROR -> console.error(builder.toString())
         }
-    })
+    }
+
+    private val handlers: ArrayList<LogHandler> = arrayListOf(this.baseHandler)
+
+    actual var baseHandlerActivated: Boolean = true
+        set(value) {
+            if (field != value) {
+                if (value) {
+                    this.handlers.add(0, this.baseHandler)
+                } else {
+                    this.handlers.removeAt(0)
+                }
+            }
+            field = value
+        }
 
     actual fun info(message: String, e: Throwable?) {
         val log = Log(LogLevel.INFO, message, e, this.name)

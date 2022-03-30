@@ -1,10 +1,10 @@
 plugins {
-    kotlin("multiplatform") version "1.6.20-M1"
+    kotlin("multiplatform") version "1.6.20-RC2"
     id("convention.publication")
 }
 
 group = "io.github.vinccool96.logging"
-version = "1.2"
+version = "1.3"
 
 repositories {
     mavenCentral()

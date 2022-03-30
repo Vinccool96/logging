@@ -4,6 +4,8 @@ expect class Logger(name: String?) {
 
     val name: String?
 
+    var baseHandlerActivated: Boolean
+
     fun info(message: String, e: Throwable? = null)
 
     fun warn(message: String, e: Throwable? = null)
